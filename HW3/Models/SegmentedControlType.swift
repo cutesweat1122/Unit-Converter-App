@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum segmentedControlType {
+enum SegmentedControlType {
     case input
     case output
 }

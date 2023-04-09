@@ -13,10 +13,27 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        initView()
+    }
+    
+    func initView() -> Void {
         view.backgroundColor = .systemGray4
     }
     
 
+    @IBAction func showUnitConverterViewController(_ sender: UIButton) {
+        performSegue(withIdentifier: "showConverter", sender: sender)
+    }
+    
+    @IBSegueAction func sendConverterType(_ coder: NSCoder, sender: UIButton) -> UnitConverterViewController? {
+        if let converterType = ConverterType(rawValue: sender.tag) {
+            return UnitConverterViewController(coder: coder, converterType: converterType)
+        }
+        else {
+            return UnitConverterViewController(coder: coder)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
