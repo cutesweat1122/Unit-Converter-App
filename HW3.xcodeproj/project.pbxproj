@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		999C73F129E296950031519F /* SegmentedControlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999C73F029E296950031519F /* SegmentedControlType.swift */; };
 		99AA05E229D182D500A21403 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AA05E129D182D500A21403 /* AppDelegate.swift */; };
 		99AA05E429D182D500A21403 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AA05E329D182D500A21403 /* SceneDelegate.swift */; };
 		99AA05E929D182D500A21403 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AA05E729D182D500A21403 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		999C73F029E296950031519F /* SegmentedControlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlType.swift; sourceTree = "<group>"; };
 		99AA05DE29D182D500A21403 /* HW3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AA05E129D182D500A21403 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AA05E329D182D500A21403 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				99E648A529E147650023C942 /* Units.swift */,
+				999C73F029E296950031519F /* SegmentedControlType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				999C73F129E296950031519F /* SegmentedControlType.swift in Sources */,
 				99AA05E229D182D500A21403 /* AppDelegate.swift in Sources */,
 				99AA05F629D183D800A21403 /* MenuViewController.swift in Sources */,
 				99C1B2CF29D194470088CDCF /* LengthViewController.swift in Sources */,

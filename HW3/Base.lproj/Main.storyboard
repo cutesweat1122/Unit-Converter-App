@@ -142,7 +142,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="convertUnitLength:" destination="GuJ-qQ-5PI" eventType="touchUpInside" id="xm3-4f-JnS"/>
+                                    <action selector="convertUnit:" destination="GuJ-qQ-5PI" eventType="touchUpInside" id="xm3-4f-JnS"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0rY-vE-S3E">
@@ -157,7 +157,7 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" name="AccentColor"/>
                                 <connections>
-                                    <action selector="convertUnitLength:" destination="GuJ-qQ-5PI" eventType="valueChanged" id="yQB-Mu-BGd"/>
+                                    <action selector="convertUnitOnUnitChanged:" destination="GuJ-qQ-5PI" eventType="valueChanged" id="G3o-1m-85h"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iIM-Ge-ONp">
@@ -178,7 +178,7 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" name="AccentColor"/>
                                 <connections>
-                                    <action selector="convertUnitLength:" destination="GuJ-qQ-5PI" eventType="valueChanged" id="cx7-qW-0at"/>
+                                    <action selector="convertUnitOnUnitChanged:" destination="GuJ-qQ-5PI" eventType="valueChanged" id="Qh4-i8-2X9"/>
                                 </connections>
                             </segmentedControl>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a number" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="LD0-nw-d0u">
@@ -188,7 +188,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="convertUnitLength:" destination="GuJ-qQ-5PI" eventType="valueChanged" id="tmq-kT-FI6"/>
+                                    <action selector="convertUnit:" destination="GuJ-qQ-5PI" eventType="valueChanged" id="tmq-kT-FI6"/>
                                     <action selector="hideKeyboard:" destination="GuJ-qQ-5PI" eventType="editingDidEndOnExit" id="nM7-Sk-zSw"/>
                                 </connections>
                             </textField>

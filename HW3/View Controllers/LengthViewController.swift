@@ -39,40 +39,45 @@ class LengthViewController: UIViewController {
     }
     
     func initSegmentedControls() -> Void {
-        initInputSegmentedControl()
-        initOutputSegmentedControl()
+        initSegmentedControl(segmentedControlType: .input)
+        initSegmentedControl(segmentedControlType: .output)
     }
-    
-    func initInputSegmentedControl() -> Void {
+        
+    func initSegmentedControl(segmentedControlType: segmentedControlType) -> Void {
+        // assign input or output segmented control
+        let segmentedControl: UISegmentedControl!
+        let segmentCount: Int!
+        switch segmentedControlType {
+        case .input:
+            segmentedControl = inputSegmentedControl
+            segmentCount = InputLengthUnit.allCases.count
+        case .output:
+            segmentedControl = outputSegmentedControl
+            segmentCount = OutputLengthUnit.allCases.count
+        }
+        
         // remove segments
-        inputSegmentedControl.removeAllSegments()
-        let segmentCount = InputLengthUnit.allCases.count
+        segmentedControl.removeAllSegments()
+        
         // insert segments and set the title
         for i in 0..<segmentCount {
-            if let lengthUnit = InputLengthUnit(rawValue: i) {
-                inputSegmentedControl.insertSegment(withTitle: lengthUnit.unitName, at: i, animated: false)
+            switch segmentedControlType{
+            case .input:
+                if let lengthUnit = InputLengthUnit(rawValue: i) {
+                    segmentedControl.insertSegment(withTitle: lengthUnit.unitName, at: i, animated: false)
+                }
+            case .output:
+                if let lengthUnit = OutputLengthUnit(rawValue: i) {
+                    segmentedControl.insertSegment(withTitle: lengthUnit.unitName, at: i, animated: false)
+                }
             }
+            
         }
         // set default selected segment
-        inputSegmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = 0
     }
     
-    func initOutputSegmentedControl() -> Void {
-        // remove segments
-        outputSegmentedControl.removeAllSegments()
-        let segmentCount = OutputLengthUnit.allCases.count
-        // insert segments and set the title
-        for i in 0..<segmentCount {
-            if let lengthUnit = OutputLengthUnit(rawValue: i) {
-                outputSegmentedControl.insertSegment(withTitle: lengthUnit.unitName, at: i, animated: false)
-            }
-        }
-        // set default selected segment
-        outputSegmentedControl.selectedSegmentIndex = 0
-    }
-    
-    
-    @IBAction func convertUnitLength(_ sender: Any) {
+    @IBAction func convertUnit(_ sender: Any) {
         // get number & unit
         let inputText = inputTextField.text! // "" or "xxx"
         let inputSegmentIndex = inputSegmentedControl.selectedSegmentIndex
@@ -95,7 +100,7 @@ class LengthViewController: UIViewController {
             }
         }
         else {
-            inputTextField.text = "Enter number only!"
+            inputTextField.text = "Enter a number."
         }
         
         // hide keyboard when the convert button is pressed
@@ -103,10 +108,17 @@ class LengthViewController: UIViewController {
         
     }
     
+    
+    @IBAction func convertUnitOnUnitChanged(_ sender: Any) {
+        if inputTextField.text != "" {
+            convertUnit(sender)
+        }
+    }
+    
     @IBAction func hideKeyboard(_ sender: Any) {
         // hide keyboard when pressing return button on the keyboard
         view.endEditing(true)
-        convertUnitLength(inputTextField)
+        convertUnit(inputTextField)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
