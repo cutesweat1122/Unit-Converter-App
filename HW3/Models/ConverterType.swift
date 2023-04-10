@@ -9,23 +9,23 @@ import Foundation
 
 enum ConverterType: Int {
     case lengthConverter
-//    case weightConverter
-//    case volumeConverter
-//    case areaConverter
-//    case temperatureConverter
+    case weightConverter
+    case volumeConverter
+    case areaConverter
+    case temperatureConverter
     
     var unit: String {
         switch self {
         case .lengthConverter:
             return "Length"
-//        case .weightConverter:
-//            return "Weight"
-//        case .volumeConverter:
-//            return "Volume"
-//        case .areaConverter:
-//            return "Area"
-//        case .temperatureConverter:
-//            return "Temperature"
+        case .weightConverter:
+            return "Weight"
+        case .volumeConverter:
+            return "Volume"
+        case .areaConverter:
+            return "Area"
+        case .temperatureConverter:
+            return "Temperature"
         }
     }
 }

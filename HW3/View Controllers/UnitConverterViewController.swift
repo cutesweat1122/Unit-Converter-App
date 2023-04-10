@@ -20,6 +20,7 @@ class UnitConverterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("viewDidLoad")
         // Do any additional setup after loading the view.
         initView()
         initTitle(unit: converterType.unit)
@@ -43,6 +44,10 @@ class UnitConverterViewController: UIViewController {
     
     func initTitle(unit: String) -> Void {
         titleLabel.text = unit + " Converter"
+        
+        // adust font size dynamically
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.minimumScaleFactor = 0.5
     }
     
     func initInputTextField() -> Void {
@@ -79,34 +84,34 @@ class UnitConverterViewController: UIViewController {
             else if segmentedControlType == .output {
                 segmentCount = OutputLengthUnit.allCases.count
             }
-//        case .weightConverter:
-//            if segmentedControlType == .input {
-//                segmentCount = InputWeigthUnit.allCases.count
-//            }
-//            else if segmentedControlType == .output {
-//                segmentCount = OutputWeightUnit.allCases.count
-//            }
-//        case .volumeConverter:
-//            if segmentedControlType == .input {
-//                segmentCount = InputVolumeUnit.allCases.count
-//            }
-//            else if segmentedControlType == .output {
-//                segmentCount = OutputVolumeUnit.allCases.count
-//            }
-//        case .areaConverter:
-//            if segmentedControlType == .input {
-//                segmentCount = InputAreaUnit.allCases.count
-//            }
-//            else if segmentedControlType == .output {
-//                segmentCount = OutputAreaUnit.allCases.count
-//            }
-//        case .temperatureConverter:
-//            if segmentedControlType == .input {
-//                segmentCount = InputTemperatureUnit.allCases.count
-//            }
-//            else if segmentedControlType == .output {
-//                segmentCount = OutputTemperatureUnit.allCases.count
-//            }
+        case .weightConverter:
+            if segmentedControlType == .input {
+                segmentCount = InputWeightUnit.allCases.count
+            }
+            else if segmentedControlType == .output {
+                segmentCount = OutputWeightUnit.allCases.count
+            }
+        case .volumeConverter:
+            if segmentedControlType == .input {
+                segmentCount = InputVolumeUnit.allCases.count
+            }
+            else if segmentedControlType == .output {
+                segmentCount = OutputVolumeUnit.allCases.count
+            }
+        case .areaConverter:
+            if segmentedControlType == .input {
+                segmentCount = InputAreaUnit.allCases.count
+            }
+            else if segmentedControlType == .output {
+                segmentCount = OutputAreaUnit.allCases.count
+            }
+        case .temperatureConverter:
+            if segmentedControlType == .input {
+                segmentCount = InputTemperatureUnit.allCases.count
+            }
+            else if segmentedControlType == .output {
+                segmentCount = OutputTemperatureUnit.allCases.count
+            }
         case .none:
             break
         }
@@ -123,22 +128,22 @@ class UnitConverterViewController: UIViewController {
                     if let unit = InputLengthUnit(rawValue: i) {
                         segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
                     }
-//                case .weightConverter:
-//                    if let unit = InputWeightUnit(rawValue: i) {
-//                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
-//                    }
-//                case .volumeConverter:
-//                    if let unit = InputVolumeUnit(rawValue: i) {
-//                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
-//                    }
-//                case .areaConverter:
-//                    if let unit = InputAreaUnit(rawValue: i) {
-//                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
-//                    }
-//                case .temperatureConverter:
-//                    if let unit = InputTemperatureUnit(rawValue: i) {
-//                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
-//                    }
+                case .weightConverter:
+                    if let unit = InputWeightUnit(rawValue: i) {
+                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
+                    }
+                case .volumeConverter:
+                    if let unit = InputVolumeUnit(rawValue: i) {
+                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
+                    }
+                case .areaConverter:
+                    if let unit = InputAreaUnit(rawValue: i) {
+                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
+                    }
+                case .temperatureConverter:
+                    if let unit = InputTemperatureUnit(rawValue: i) {
+                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
+                    }
                 case .none:
                     break
                 }
@@ -148,22 +153,22 @@ class UnitConverterViewController: UIViewController {
                     if let unit = OutputLengthUnit(rawValue: i) {
                         segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
                     }
-//                case .weightConverter:
-//                    if let unit = OutputWeightUnit(rawValue: i) {
-//                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
-//                    }
-//                case .volumeConverter:
-//                    if let unit = OutputVolumeUnit(rawValue: i) {
-//                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
-//                    }
-//                case .areaConverter:
-//                    if let unit = OutputAreaUnit(rawValue: i) {
-//                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
-//                    }
-//                case .temperatureConverter:
-//                    if let unit = OutputTemperatureUnit(rawValue: i) {
-//                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
-//                    }
+                case .weightConverter:
+                    if let unit = OutputWeightUnit(rawValue: i) {
+                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
+                    }
+                case .volumeConverter:
+                    if let unit = OutputVolumeUnit(rawValue: i) {
+                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
+                    }
+                case .areaConverter:
+                    if let unit = OutputAreaUnit(rawValue: i) {
+                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
+                    }
+                case .temperatureConverter:
+                    if let unit = OutputTemperatureUnit(rawValue: i) {
+                        segmentedControl.insertSegment(withTitle: unit.unitName, at: i, animated: false)
+                    }
                 case .none:
                     break
                 }
@@ -214,20 +219,7 @@ class UnitConverterViewController: UIViewController {
         case .input:
             return segmentIndex
         case .output:
-            switch converterType {
-            case .lengthConverter:
-                return segmentIndex + inputUnitCount[0]
-//            case .weightConverter:
-//                return segmentIndex + inputUnitCount[1]
-//            case .volumeConverter:
-//                return segmentIndex + inputUnitCount[2]
-//            case .areaConverter:
-//                return segmentIndex + inputUnitCount[3]
-//            case .temperatureConverter:
-//                return segmentIndex + inputUnitCount[4]
-            case .none:
-                return nil
-            }
+            return segmentIndex + inputUnitCount[converterType.rawValue]
         }
     }
     
@@ -235,14 +227,14 @@ class UnitConverterViewController: UIViewController {
         switch converterType {
         case .lengthConverter:
             return Measure(type: .length, value: value, unitID: unitID) ?? nil
-//        case .weightConverter:
-//            return Measure(type: .weight, value: value, unitID: unitID) ?? nil
-//        case .volumeConverter:
-//            return Measure(type: .volume, value: value, unitID: unitID) ?? nil
-//        case .areaConverter:
-//            return Measure(type: .area, value: value, unitID: unitID) ?? nil
-//        case .temperatureConverter:
-//            return Measure(type: .temperature, value: value, unitID: unitID) ?? nil
+        case .weightConverter:
+            return Measure(type: .weight, value: value, unitID: unitID) ?? nil
+        case .volumeConverter:
+            return Measure(type: .volume, value: value, unitID: unitID) ?? nil
+        case .areaConverter:
+            return Measure(type: .area, value: value, unitID: unitID) ?? nil
+        case .temperatureConverter:
+            return Measure(type: .temperature, value: value, unitID: unitID) ?? nil
         case .none:
             return nil
         }

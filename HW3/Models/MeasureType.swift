@@ -9,8 +9,8 @@ import Foundation
 
 enum MeasureType {
     case length
-//    case weight
-//    case volume
-//    case area
-//    case temperature
+    case weight
+    case volume
+    case area
+    case temperature
 }
