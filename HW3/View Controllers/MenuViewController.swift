@@ -8,16 +8,35 @@
 import UIKit
 
 class MenuViewController: UIViewController {
-
+    @IBOutlet weak var lengthButton: UIButton!
+    @IBOutlet weak var weightButton: UIButton!
+    @IBOutlet weak var volumeButton: UIButton!
+    @IBOutlet weak var areaButton: UIButton!
+    @IBOutlet weak var temperatureButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         initView()
+        initButtons()
     }
     
     func initView() -> Void {
         view.backgroundColor = .systemGray4
+    }
+    
+    func initButtons() -> Void {
+        lengthButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        lengthButton.titleLabel?.minimumScaleFactor = 0.5
+        weightButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        weightButton.titleLabel?.minimumScaleFactor = 0.5
+        volumeButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        volumeButton.titleLabel?.minimumScaleFactor = 0.5
+        areaButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        areaButton.titleLabel?.minimumScaleFactor = 0.5
+        temperatureButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        temperatureButton.titleLabel?.minimumScaleFactor = 0.5
     }
     
 

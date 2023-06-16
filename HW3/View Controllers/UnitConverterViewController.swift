@@ -9,24 +9,27 @@ import UIKit
 
 class UnitConverterViewController: UIViewController {
     let converterType: ConverterType!
+    var safeAreaFrame: CGRect!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var outputTextField: UITextField!
     @IBOutlet weak var inputSegmentedControl: UISegmentedControl!
     @IBOutlet weak var outputSegmentedControl: UISegmentedControl!
-    
+    @IBOutlet weak var convertButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("viewDidLoad")
         // Do any additional setup after loading the view.
+        safeAreaFrame = view.safeAreaLayoutGuide.layoutFrame
         initView()
         initTitle(unit: converterType.unit)
         initInputTextField()
         initOutputTextField()
         initSegmentedControls()
+        initConvertButton()
     }
     
     init?(coder: NSCoder, converterType: ConverterType) {
@@ -46,16 +49,106 @@ class UnitConverterViewController: UIViewController {
         titleLabel.text = unit + " Converter"
         
         // adust font size dynamically
+        titleLabel.font = titleLabel.font?.withSize(1000)
         titleLabel.adjustsFontSizeToFitWidth = true
-        titleLabel.minimumScaleFactor = 0.5
+        titleLabel.minimumScaleFactor = 0.01
+        
+        // auto layout
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        var constraints: [NSLayoutConstraint] = []
+        let size = UnitConverterSizeConfiguration().titleLabel
+        let ySpacingRatio = UnitConverterYSpacingConfiguration().titleLabel
+        // width auto layout
+        let widthConstraint = titleLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: size.widthRatio)
+        // height auto layout
+        let heightConstraint = titleLabel.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: size.heightRatio)
+        // x auto layout
+        let xConstraint = titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        // y auto layout
+        let yConstraint1 = titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        let yConstraint2 = titleLabel.bottomAnchor.constraint(equalTo: inputTextField.topAnchor, constant: safeAreaFrame.height * ySpacingRatio)
+        // enable constraints
+        constraints.append(contentsOf: [widthConstraint, heightConstraint, xConstraint, yConstraint1, yConstraint2])
+        NSLayoutConstraint.activate(constraints)
     }
     
     func initInputTextField() -> Void {
         inputTextField.clearButtonMode = .always
+        
+        // auto layout
+        inputTextField.translatesAutoresizingMaskIntoConstraints = false
+        var constraints: [NSLayoutConstraint] = []
+        let size = UnitConverterSizeConfiguration().inputTextField
+        let ySpacingRatio = UnitConverterYSpacingConfiguration().inputTextField
+        // width auto layout
+        let widthConstraint = inputTextField.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: size.widthRatio)
+        // height auto layout
+        let heightConstraint = inputTextField.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: size.heightRatio)
+        // x auto layout
+        let xConstraint = inputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        // y auto layout
+        let yConstraint = inputTextField.bottomAnchor.constraint(equalTo: inputSegmentedControl.topAnchor, constant: safeAreaFrame.height * ySpacingRatio)
+        // enable constraints
+        constraints.append(contentsOf: [widthConstraint, heightConstraint, xConstraint, yConstraint])
+        NSLayoutConstraint.activate(constraints)
+        
+        // rounded corner
+        let cornerRatio = UnitConverterCornerConfiguration().inputTextField
+        inputTextField.layer.cornerRadius = inputTextField.layer.bounds.height * cornerRatio
+        inputTextField.clipsToBounds = true
     }
     
     func initOutputTextField() -> Void {
         outputTextField.isUserInteractionEnabled = false
+
+        // auto layout
+        outputTextField.translatesAutoresizingMaskIntoConstraints = false
+        var constraints: [NSLayoutConstraint] = []
+        let size = UnitConverterSizeConfiguration().outputTextField
+        let ySpacingRatio = UnitConverterYSpacingConfiguration().outputTextField
+        // width auto layout
+        let widthConstraint = outputTextField.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: size.widthRatio)
+        // height auto layout
+        let heightConstraint = outputTextField.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: size.heightRatio)
+        // x auto layout
+        let xConstraint = outputTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        // y auto layout
+        let yConstraint = outputTextField.bottomAnchor.constraint(equalTo: outputSegmentedControl.topAnchor, constant: safeAreaFrame.height * ySpacingRatio)
+        // enable constraints
+        constraints.append(contentsOf: [widthConstraint, heightConstraint, xConstraint, yConstraint])
+        NSLayoutConstraint.activate(constraints)
+        
+        // rounded corner
+        let cornerRatio = UnitConverterCornerConfiguration().outputTextField
+        outputTextField.layer.cornerRadius = outputTextField.layer.bounds.height * cornerRatio
+        outputTextField.clipsToBounds = true
+    }
+    
+    func initConvertButton() -> Void {
+        // adust image size dynamically
+        convertButton.imageView?.contentMode = .scaleToFill
+        
+        // auto layout
+        convertButton.translatesAutoresizingMaskIntoConstraints = false
+        var constraints: [NSLayoutConstraint] = []
+        let size = UnitConverterSizeConfiguration().convertButton
+        let ySpacingRatio = UnitConverterYSpacingConfiguration().convertButton
+        // width auto layout
+        let widthConstraint = convertButton.widthAnchor.constraint(equalTo: convertButton.heightAnchor)
+        // height auto layout
+        let heightConstraint = convertButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: size.heightRatio)
+        // x auto layout
+        let xConstraint = convertButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        // y auto layout
+        let yConstraint1 = convertButton.topAnchor.constraint(equalTo: inputSegmentedControl.bottomAnchor, constant: safeAreaFrame.height * ySpacingRatio[0])
+        let yConstraint2 = convertButton.bottomAnchor.constraint(equalTo: outputTextField.topAnchor, constant: safeAreaFrame.height * ySpacingRatio[1])
+        // enable contraints
+        constraints.append(contentsOf: [widthConstraint, heightConstraint, xConstraint, yConstraint1, yConstraint2])
+        NSLayoutConstraint.activate(constraints)
+        
+        // rounded corner
+        let cornerRatio = UnitConverterCornerConfiguration().convertButton
+        convertButton.layer.cornerRadius = convertButton.layer.bounds.width * cornerRatio
     }
     
     func initSegmentedControls() -> Void {
@@ -178,8 +271,67 @@ class UnitConverterViewController: UIViewController {
         
         // set default selected segment
         segmentedControl.selectedSegmentIndex = 0
+        
+        // adust font size dynamically
+        initSegmentedControlAutoLabelFont(view: segmentedControl)
+        
+        // auto layout
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        var constraints: [NSLayoutConstraint] = []
+        var size: Size!
+        switch segmentedControlType {
+        case .input:
+            size = UnitConverterSizeConfiguration().inputSegmentedControl
+        default:
+            size = UnitConverterSizeConfiguration().outputSegmentedControl
+        }
+        // width auto layout
+        let widthConstraint = segmentedControl.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: size.widthRatio)
+        // height auto layout
+        let heightConstraint = segmentedControl.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: size.heightRatio)
+        // x auto layout
+        let xConstraint = segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        // y auto layout
+        let yConstraint = segmentedControl.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor)
+        // enable constraints
+        if segmentedControlType == .output {
+            constraints.append(contentsOf: [widthConstraint, heightConstraint, xConstraint, yConstraint])
+        }
+        else {
+            constraints.append(contentsOf: [widthConstraint, heightConstraint, xConstraint])
+        }
+        NSLayoutConstraint.activate(constraints)
     }
     
+    func initSegmentedControlAutoLabelFont (view: UIView) -> Void {
+        let subviews = view.subviews
+        for subview in subviews {
+            for subSubview in subview.subviews {
+                if let label = subSubview as? UILabel {
+                    label.font = label.font.withSize(1000)
+                    label.adjustsFontSizeToFitWidth = true
+                    label.minimumScaleFactor = 0.01
+                }
+            }
+        }
+        /*
+        let subviews: [UIView]? = view.subviews
+        for subview in subviews! {
+            if subview is UILabel {
+                let label = subview as! UILabel
+                label.font = label.font.withSize(1000)
+                label.adjustsFontSizeToFitWidth = true
+                label.minimumScaleFactor = 0.01
+                print("label found")
+                print(label.text)
+            }
+            else {
+                initSegmentedControlAutoLabelFont(view: subview)
+            }
+        }
+         */
+    }
+
     @IBAction func convertUnit(_ sender: Any) {
         // get number & unit
         let inputText = inputTextField.text! // "" or "xxx"
